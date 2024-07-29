@@ -19,6 +19,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         // Starting image tracking
         startImgTrackign()
         
+        arView.session.delegate = self
     }
     
     func startImgTrackign() {
@@ -41,8 +42,28 @@ class ViewController: UIViewController, ARSessionDelegate {
                 let width = Float(imgAnchor.referenceImage.physicalSize.width)
                 let height = Float(imgAnchor.referenceImage.physicalSize.height)
                 let videoScreen = createVideoScreen(width: width, height: height)
+                
+                placeVideoScreen(videoScreen: videoScreen, imgAnchor: imgAnchor)
             }
         }
+    }
+    
+    
+// MARK: - Object placement
+    func placeVideoScreen(videoScreen: ModelEntity, imgAnchor: ARImageAnchor) {
+        let imgAnchorEntity = AnchorEntity(anchor: imgAnchor)
+        
+        let rotationAngle = simd_quatf(angle: GLKMathDegreesToRadians(-90), axis: SIMD3(x: 1, y: 0, z: 0))
+        videoScreen.setOrientation(rotationAngle, relativeTo: imgAnchorEntity)
+        
+        let bookWidth = Float(imgAnchor.referenceImage.physicalSize.width)
+        videoScreen.setPosition(SIMD3(x: bookWidth, y: 0, z: 0), relativeTo: imgAnchorEntity)
+        
+        imgAnchorEntity.addChild(videoScreen)
+        
+        // add anchor to scene
+        arView.scene.addAnchor(imgAnchorEntity)
+        
     }
     
 // MARK: - VideoScreen
