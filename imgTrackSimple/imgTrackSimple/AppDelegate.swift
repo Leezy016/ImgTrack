@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  imgTrackSimple
 //
-//  Created by Rice on 2024/8/16.
+//  Created by Rice on 2024/8/12.
 //
 
 import UIKit

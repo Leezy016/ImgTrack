@@ -81,7 +81,6 @@ struct ARViewContainer: UIViewRepresentable {
                         }
                     }
                 }
-                // play sound
                 parent.playSound()
             }
         }
@@ -104,6 +103,7 @@ struct ARViewContainer: UIViewRepresentable {
         let configuration = ARImageTrackingConfiguration()
         configuration.isAutoFocusEnabled = false
         configuration.trackingImages = referenceImages
+        // once tracked, stop
         configuration.maximumNumberOfTrackedImages = 0
         
         // Enables People Occulusion on supported iOS Devices
