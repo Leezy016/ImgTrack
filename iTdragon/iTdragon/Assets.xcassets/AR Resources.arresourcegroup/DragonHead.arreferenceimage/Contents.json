@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "DragonHead.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "width" : 0.40000000000000002
+  }
+}
